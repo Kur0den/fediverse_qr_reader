@@ -1,18 +1,26 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<!-- CSS -->
-		<link rel="stylesheet" href="./style.css"/>
-		<!-- JavaScript -->
-		<script src="./jsQR.js" defer></script>
-		<script src="./main.js" defer></script>
-	</head>
-	<body>
-		<h1>jsQR</h1>
-		<div id="wrapper">
-			<div id="msg">Unable to access video stream.</div>
-			<canvas id="canvas"></canvas>
-		</div>
-	</body>
+    <head>
+        <meta charset="UTF-8" />
+        <!-- CSS -->
+        <link rel="stylesheet" href="./style.css" />
+        <!-- JavaScript -->
+        <script src="./jsQR.js" defer></script>
+        <script src="./main.js" defer></script>
+        <title>Fediverse QR Reader</title>
+    </head>
+    <body>
+        <h1>Fediverse QR Reader</h1>
+        <p>Fediverseとか名乗っておきながら多分ほとんど対応できてない</p>
+        <div id="instanceMemorize">
+            <label for="instanceDomain">インスタンスのドメイン</label>
+            <input type="text" id="instanceDomain" name="instanceDomain" />
+            <input type="button" id="memoryzeButton" value="インスタンスを記憶" />
+        </div>
+        <div id="memorizedInstance"></div>
+        <div id="wrapper">
+            <div id="msg">Unable to access video stream.</div>
+            <canvas id="canvas"></canvas>
+        </div>
+    </body>
 </html>

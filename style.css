@@ -1,4 +1,10 @@
 /* CSS */
+* {
+    text-align: center;
+    margin: 10px;
+}
+
+
 body{
 	background-color: gray;
 }
@@ -19,6 +25,6 @@ h1{
 }
 
 #canvas{
-	width: 100%; height: auto;
+	margin: 0px; width: 100%; height: auto;
 	background-color: silver;
 }
