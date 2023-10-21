@@ -40,17 +40,14 @@ window.onload = (e) => {
     let msg = document.getElementById('msg');
 
     const userMedia = { video: { facingMode: 'environment' } };
-    navigator.mediaDevices
-        .getUserMedia(userMedia)
-        .then((stream) => {
-            video.srcObject = stream;
-            video.setAttribute('playsinline', true);
-            video.play();
-            startTick();
-        })
-        .catch((err) => msg.innerText = err);
+    navigator.mediaDevices.getUserMedia(userMedia).then((stream) => {
+        video.srcObject = stream;
+        video.setAttribute('playsinline', true);
+        video.play();
+        startTick(stream);
+    });
 
-    function startTick() {
+    function startTick(stram) {
         msg.innerText = 'Loading video...';
         if (video.readyState === video.HAVE_ENOUGH_DATA) {
             canvas.height = video.videoHeight;
@@ -65,7 +62,7 @@ window.onload = (e) => {
                     const cookieValue = getCookie();
                     if (cookieValue != null) {
                         siteTransition(code.data);
-                        throw qrLoad;
+                        stream.getTracks().forEach((track) => track.stop());
                     } else {
                         msg.innerText = 'ドメインを指定して下さい！';
                     }
