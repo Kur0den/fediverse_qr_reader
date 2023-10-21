@@ -1,6 +1,7 @@
 const button = document.getElementById('memorizeButton');
 const inputDomain = document.getElementById('inputDomain');
 const domain = document.getElementById('domain');
+const misskeyUrl = document.getElementById('misskeyUrl');
 
 function siteTransition(qrUrl) {
     const domain = getCookie();
@@ -77,22 +78,18 @@ window.onload = (e) => {
     if (cookieValue != null) {
         domain.textContent = cookieValue;
         button.value = 'インスタンスを更新';
+        misskeyUrl.href =
+            'https://' + cookieValue + '/@Kur0den0010@koliosky.com';
     }
 };
 
 button.addEventListener('click', domain_store);
 
-function load(_url) {
-    var xhr;
-    xhr = new XMLHttpRequest();
-    xhr.open('HEAD', _url, false);
-    xhr.send(null);
-    return xhr.status;
-}
-
 function domain_store() {
     if (navigator.cookieEnabled) {
         document.cookie = 'domain=' + encodeURIComponent(inputDomain.value);
         domain.textContent = inputDomain.value;
+        misskeyUrl.href =
+            'https://' + inputDomain.value + '/@Kur0den0010@koliosky.com';
     }
 }
