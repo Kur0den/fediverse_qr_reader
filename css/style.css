@@ -1,0 +1,25 @@
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: sans-serif;
+}
+
+.reader {
+    width: 100vw;
+    height: 100%;
+    position: relative;
+}
+
+.reader-video {
+    background-color: #000;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+}
