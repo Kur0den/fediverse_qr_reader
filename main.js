@@ -2,6 +2,36 @@ const button = document.getElementById('memorizeButton');
 const inputDomain = document.getElementById('inputDomain');
 const domain = document.getElementById('domain');
 
+function siteTransition(qrUrl) {
+    const domain = getCookie();
+    location.href =
+        'https://' +
+        domain +
+        '/@' +
+        qrUrl
+            .split('/')
+            .find((row) => row.startsWith('@'))
+            .split('@')[1] +
+        '@' +
+        qrUrl
+            .split('/@')
+            .find((row) => row.startsWith('https://'))
+            .split('https://')[1];
+}
+
+function getCookie() {
+    if (navigator.cookieEnabled) {
+        if (document.cookie != '') {
+            const cookieValue = document.cookie
+                .split('; ')
+                .find((row) => row.startsWith('domain'))
+                .split('=')[1];
+            return cookieValue;
+        }
+    }
+    return null;
+}
+
 window.onload = (e) => {
     let video = document.createElement('video');
     let canvas = document.getElementById('canvas');
@@ -27,11 +57,13 @@ window.onload = (e) => {
                 inversionAttempts: 'dontInvert',
             });
             if (code) {
-                drawRect(code.location); // Rect
-                msg.innerText = code.data; // Data
                 if (code.data.startsWith('https://')) {
-                    console.log(true);
-                    location.href = code.data;
+                    const cookieValue = getCookie();
+                    if (cookieValue != null) {
+                        siteTransition(code.data);
+                    } else {
+                        msg.innerText = 'ドメインを指定して下さい！';
+                    }
                 }
             } else {
                 msg.innerText = 'Detecting QR-Code...';
@@ -40,32 +72,11 @@ window.onload = (e) => {
         setTimeout(startTick, 100);
     }
 
-    function drawRect(location) {
-        drawLine(location.topLeftCorner, location.topRightCorner);
-        drawLine(location.topRightCorner, location.bottomRightCorner);
-        drawLine(location.bottomRightCorner, location.bottomLeftCorner);
-        drawLine(location.bottomLeftCorner, location.topLeftCorner);
-    }
+    const cookieValue = getCookie();
 
-    function drawLine(begin, end) {
-        ctx.lineWidth = 4;
-        ctx.strokeStyle = '#FF3B58';
-        ctx.beginPath();
-        ctx.moveTo(begin.x, begin.y);
-        ctx.lineTo(end.x, end.y);
-        ctx.stroke();
-    }
-
-    if (navigator.cookieEnabled) {
-        console.log(typeof document.cookie);
-        if (document.cookie != '') {
-            const cookieValue = document.cookie
-                .split('; ')
-                .find((row) => row.startsWith('domain'))
-                .split('=')[1];
-            domain.textContent = cookieValue;
-            button.value = 'インスタンスを更新';
-        }
+    if (cookieValue != null) {
+        domain.textContent = cookieValue;
+        button.value = 'インスタンスを更新';
     }
 };
 
@@ -81,9 +92,7 @@ function load(_url) {
 
 function domain_store() {
     if (navigator.cookieEnabled) {
-        if (load(inputDomain.value + '/manifest.json') == 200) {
-            document.cookie = 'domain=' + encodeURIComponent(inputDomain.value);
-            domain.textContent = inputDomain.value;
-        }
+        document.cookie = 'domain=' + encodeURIComponent(inputDomain.value);
+        domain.textContent = inputDomain.value;
     }
 }
