@@ -40,12 +40,15 @@ window.onload = (e) => {
     let msg = document.getElementById('msg');
 
     const userMedia = { video: { facingMode: 'environment' } };
-    navigator.mediaDevices.getUserMedia(userMedia).then((stream) => {
-        video.srcObject = stream;
-        video.setAttribute('playsinline', true);
-        video.play();
-        startTick();
-    });
+    navigator.mediaDevices
+        .getUserMedia(userMedia)
+        .then((stream) => {
+            video.srcObject = stream;
+            video.setAttribute('playsinline', true);
+            video.play();
+            startTick();
+        })
+        .catch((err) => msg.innerText = err);
 
     function startTick() {
         msg.innerText = 'Loading video...';
