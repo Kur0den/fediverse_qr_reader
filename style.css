@@ -13,6 +13,10 @@ h1{
 	text-align: center;
 }
 
+#favicon {
+    vertical-align: middle;
+ }
+
 #wrapper{
 	margin: 0px auto 0px auto;
 	width: 320px; height: auto;

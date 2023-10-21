@@ -1,3 +1,7 @@
+const button = document.getElementById('memorizeButton');
+const inputDomain = document.getElementById('inputDomain');
+const domain = document.getElementById('domain');
+
 window.onload = (e) => {
     let video = document.createElement('video');
     let canvas = document.getElementById('canvas');
@@ -51,15 +55,35 @@ window.onload = (e) => {
         ctx.lineTo(end.x, end.y);
         ctx.stroke();
     }
+
+    if (navigator.cookieEnabled) {
+        console.log(typeof document.cookie);
+        if (document.cookie != '') {
+            const cookieValue = document.cookie
+                .split('; ')
+                .find((row) => row.startsWith('domain'))
+                .split('=')[1];
+            domain.textContent = cookieValue;
+            button.value = 'インスタンスを更新';
+        }
+    }
 };
 
-const button = document.getElementById('memoryzeButton');
-const instance = document.getElementById('instanceDomain');
+button.addEventListener('click', domain_store);
 
-button.addEventListener('click', instance_store);
+function load(_url) {
+    var xhr;
+    xhr = new XMLHttpRequest();
+    xhr.open('HEAD', _url, false);
+    xhr.send(null);
+    return xhr.status;
+}
 
-function instance_store() {
+function domain_store() {
     if (navigator.cookieEnabled) {
-        document.cookie = 'instance=' + encodeURIComponent(instance.value)
+        if (load(inputDomain.value + '/manifest.json') == 200) {
+            document.cookie = 'domain=' + encodeURIComponent(inputDomain.value);
+            domain.textContent = inputDomain.value;
+        }
     }
 }

@@ -13,13 +13,19 @@
         <h1>Fediverse QR Reader</h1>
         <p>Fediverseとか名乗っておきながら多分ほとんど対応できてない</p>
         <div id="instanceMemorize">
-            <label for="instanceDomain">インスタンスのドメイン</label>
-            <input type="text" id="instanceDomain" name="instanceDomain" />
-            <input type="button" id="memoryzeButton" value="インスタンスを記憶" />
+            <label for="inputDomain">インスタンスのドメイン</label>
+            <input type="text" id="inputDomain" name="inputDomain" />
+            <input
+                type="button"
+                id="memorizeButton"
+                value="インスタンスを記憶"
+            />
         </div>
-        <div id="memorizedInstance"></div>
+        <div id="memorizedDomain">
+            <p>記憶済みのインスタンス: <img id="favicon" src="https://misskey.io/static-assets/icons/192.png" alt="instance favicon" height="20"><p id="domain">なし</p></p>
+        </div>
         <div id="wrapper">
-            <div id="msg">Unable to access video stream.</div>
+            <div id="msg">カメラにアクセスできません.</div>
             <canvas id="canvas"></canvas>
         </div>
     </body>
