@@ -62,6 +62,7 @@ window.onload = (e) => {
                     const cookieValue = getCookie();
                     if (cookieValue != null) {
                         siteTransition(code.data);
+                        throw qrLoad;
                     } else {
                         msg.innerText = 'ドメインを指定して下さい！';
                     }
