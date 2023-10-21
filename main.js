@@ -24,6 +24,10 @@ window.onload = (e)=>{
 			if(code){
 				drawRect(code.location);// Rect
 				msg.innerText = code.data;// Data
+                if(code.data.startsWith('https://')){
+                    console.log(true)
+                    location.href = code.data
+                }
 			}else{
 				msg.innerText = "Detecting QR-Code...";
 			}
