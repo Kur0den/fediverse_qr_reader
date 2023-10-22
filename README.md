@@ -4,6 +4,8 @@
 
 相手側のユーザーページのQR(例:`https://koliosky.com/@Kur0den0010`)を読み取ることであらかじめ指定したインスタンスのそのユーザのページに飛べるやつ
 
+↓https://koliosky.com/@Kur0den0010 のQRコード
+
 ![QRコード](./qr.png)
 
 ユーザーページのURLが`xxx.com/@username`みたいな感じのアプリなら多分対応してる
