@@ -6,7 +6,6 @@
 ![QRコード](./qr.png)
 ユーザーページのURLが`xxx.com/@username`みたいな感じのアプリなら多分対応してる
 
-
 Misskey/Mastodon/Firefishは確認済みなはず
 
 6時間クオリティ
