@@ -4,7 +4,7 @@
 
 相手側のユーザーページのQR(例:`https://koliosky.com/@Kur0den0010`)を読み取ることであらかじめ指定したインスタンスのそのユーザのページに飛べるやつ
 
-↓https://koliosky.com/@Kur0den0010のQRコード
+↓https://koliosky.com/@Kur0den0010 のQRコード
 
 ![QRコード](./qr.png)
 
