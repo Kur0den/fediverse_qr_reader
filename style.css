@@ -2,8 +2,8 @@
 * {
     text-align: center;
     margin: 10px;
+    max-width: 1000px;      
 }
-
 
 body{
 	background-color: #e6e6fa;
